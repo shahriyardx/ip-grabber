@@ -17,6 +17,7 @@ export default Verify;
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const ip = context.req.headers["x-forwarded-for"];
+  console.log(context.req.headers)
   const { reqId } = context.params as { reqId: string };
 
   await db.registerIp.create({
