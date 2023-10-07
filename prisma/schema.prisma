@@ -1,0 +1,15 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgres"
+    url      = env("DATABASE_URL")
+}
+
+model RegisterIp {
+    id        String  @id @default(cuid())
+    req_id    String
+    ip        String  @default("")
+    fulfilled Boolean @default(false)
+}
