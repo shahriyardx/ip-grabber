@@ -12,4 +12,5 @@ model RegisterIp {
     req_id    String
     ip        String  @default("")
     fulfilled Boolean @default(false)
+    visited   Int     @default(0)
 }

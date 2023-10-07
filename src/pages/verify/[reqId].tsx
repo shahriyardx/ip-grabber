@@ -18,11 +18,21 @@ export default Verify;
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const ip = context.req.headers["cf-connecting-ip"];
   const { reqId } = context.params as { reqId: string };
-  
   const exists = await db.registerIp.findFirst({ where: { req_id: reqId}})
   
   if (!exists) {
       await db.registerIp.create({
+        data: {
+          ip: ip?.toString(),
+          req_id: reqId,
+          fulfilled: true,
+        },
+      });
+  } else {
+    await db.registerIp.updateMany({
+        where: {
+            req_id: reqId,
+        },
         data: {
           ip: ip?.toString(),
           req_id: reqId,

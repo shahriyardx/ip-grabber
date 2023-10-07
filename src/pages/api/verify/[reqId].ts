@@ -16,7 +16,15 @@ export default async function handler(
     },
   });
   if (data) {
-    res.status(200).json({ success: true, ip: data.ip });
+    if (data.visited > 1) {
+      res.status(200).json({ success: true, ip: data.ip });
+    } else {
+      await db.registerIp.updateMany({
+        where: { req_id: req.query.reqId as string },
+        data: { visited: { increment: 1 } },
+      });
+      res.status(200).json({ success: false });
+    }
   } else {
     res.status(200).json({ success: false });
   }
