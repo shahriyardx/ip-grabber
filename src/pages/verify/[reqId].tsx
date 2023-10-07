@@ -26,6 +26,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
           ip: ip?.toString(),
           req_id: reqId,
           fulfilled: true,
+          visited: 1,
         },
       });
   } else {
