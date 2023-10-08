@@ -17,6 +17,7 @@ export default Verify;
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const ip = context.req.headers["cf-connecting-ip"];
+  console.log(context.req.headers)
   const { reqId } = context.params as { reqId: string };
   const exists = await db.registerIp.findFirst({ where: { req_id: reqId}})
   
