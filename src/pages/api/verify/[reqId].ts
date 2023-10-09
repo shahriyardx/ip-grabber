@@ -16,12 +16,8 @@ export default async function handler(
     },
   });
   if (data) {
-    if (data.visited > 1) {
-      res.status(200).json({ success: true, ip: data.ip });
-    } else {
-      res.status(200).json({ success: false });
-    }
+    res.status(200).json({ success: true, ip: data.ip });
   } else {
-    res.status(200).json({ success: false });
+    res.status(200).json({ success: false, ip: "" });
   }
 }
