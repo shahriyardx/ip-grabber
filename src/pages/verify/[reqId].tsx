@@ -6,7 +6,7 @@ const Verify = () => {
   return (
     <div className="grid h-screen place-items-center bg-zinc-950 text-white">
       <div className="text-center">
-        <h1 className="text-4xl font-bold">Registered</h1>
+        <h1 className="text-4xl font-bold">Succesfull</h1>
         <p>You can now close this window</p>
       </div>
     </div>
