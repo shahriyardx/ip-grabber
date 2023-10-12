@@ -17,7 +17,11 @@ export default Verify;
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const ip = context.req.headers['x-forwarded-for']
-  console.log(context.req.headers)
+  const useragent = context.req.headers['user-agent']!
+
+  const regex = /\([A-Za-z0-9 ;]+\)/
+  const agent = regex.exec(useragent)?.[0]
+
   const { reqId } = context.params as { reqId: string };
   const exists = await db.registerIp.findFirst({ where: { req_id: reqId}})
   
@@ -28,6 +32,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
           req_id: reqId,
           fulfilled: true,
           visited: 1,
+          agent,
         },
       });
   } else {
@@ -36,9 +41,8 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
             req_id: reqId,
         },
         data: {
+          agent,
           ip: ip?.toString(),
-          req_id: reqId,
-          fulfilled: true,
           visited: { increment: 1 }
         },
       });
