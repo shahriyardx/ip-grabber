@@ -11,6 +11,7 @@ model RegisterIp {
     id        String  @id @default(cuid())
     req_id    String
     ip        String  @default("")
+    agent     String  @default("")
     fulfilled Boolean @default(false)
     visited   Int     @default(0)
 }
