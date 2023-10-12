@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 type ResponseData = {
   success: boolean;
   ip?: string;
+  agent?: string,
 };
 
 export default async function handler(
@@ -16,8 +17,8 @@ export default async function handler(
     },
   });
   if (data) {
-    res.status(200).json({ success: true, ip: data.ip });
+    res.status(200).json({ success: true, ip: data.ip, agent: data.agent });
   } else {
-    res.status(200).json({ success: false, ip: "" });
+    res.status(200).json({ success: false, ip: "", agent: "" });
   }
 }
