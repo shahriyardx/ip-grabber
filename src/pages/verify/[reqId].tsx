@@ -18,9 +18,10 @@ export default Verify;
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const ip = context.req.headers['x-forwarded-for']
   const useragent = context.req.headers['user-agent']!
-
+  console.log(useragent)
   const regex = /\([A-Za-z0-9 ;]+\)/
   const agent = regex.exec(useragent)?.[0]
+  console.log(agent)
 
   const { reqId } = context.params as { reqId: string };
   const exists = await db.registerIp.findFirst({ where: { req_id: reqId}})
