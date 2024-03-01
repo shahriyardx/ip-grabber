@@ -1,8 +1,24 @@
 version: '3.9'
-
 services:
-  app:
-    build: .
-    container_name: ipg
+  web:
+    image: 'gitlab/gitlab-ce:latest'
+    container_name: gitlab
+    restart: always
     ports:
-      - 3070:3000
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - 'gitlab_config:/etc/gitlab'
+      - 'gitlab_logs:/var/log/gitlab'
+      - 'gitlab_data:/var/opt/gitlab'
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: '2048M'
+
+volumes:
+  gitlab_config: {}
+  gitlab_logs: {}
+  gitlab_data: {}
