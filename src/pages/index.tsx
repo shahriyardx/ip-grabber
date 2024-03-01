@@ -28,7 +28,7 @@ export default function Home() {
         };
         team_data.push(data.data);
         setTeams(team_data);
-        await wait(2000);
+        await wait(500);
       }
 
       setLoading(false);
