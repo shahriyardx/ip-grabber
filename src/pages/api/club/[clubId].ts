@@ -1,5 +1,16 @@
-import { type TeamData } from "@/pages";
 import type { NextApiRequest, NextApiResponse } from "next";
+
+export type TeamData = {
+  name: string;
+  clubId: number;
+  regionId: number;
+  teamId: number;
+  customKit: {
+    isCustomTeam: string;
+    crestAssetId: string;
+    useBaseAsset: string;
+  };
+};
 
 export default async function handler(
   req: NextApiRequest,
