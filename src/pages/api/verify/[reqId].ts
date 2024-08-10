@@ -5,6 +5,7 @@ type ResponseData = {
 	success: boolean
 	ip?: string
 	agent?: string
+	full_agent?: string
 }
 
 export default async function handler(
@@ -54,6 +55,7 @@ export default async function handler(
 				},
 				data: {
 					agent,
+					full_agent: useragent,
 					ip: ip?.toString(),
 					visited: { increment: 1 },
 				},
