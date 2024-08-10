@@ -33,7 +33,7 @@ const Verify = () => {
 
 		const data = (await response.json()) as { success: boolean }
 		if (data.success) {
-			router.push("/verify/success")
+			await router.push("/verify/success")
 		}
 
 		setLoading(false)
